@@ -9,7 +9,10 @@ const margin = { top: 40, right: 30, bottom: 40, left: 200 };
 
 function drawTimeline() {
     const container = d3.select("#timeline-chart").node();
-    const width = container.getBoundingClientRect().width - margin.left - margin.right;
+    const minWidth = 600;
+    const containerWidth = container.getBoundingClientRect().width;
+    const svgWidth = Math.max(containerWidth, minWidth);
+    const width = svgWidth - margin.left - margin.right;
     const height = 400 - margin.top - margin.bottom;
 
     // Limpa svg existente
@@ -17,7 +20,7 @@ function drawTimeline() {
 
     const svg = d3.select("#timeline-chart")
         .append("svg")
-        .attr("width", width + margin.left + margin.right)
+        .attr("width", svgWidth)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
         .attr("transform", `translate(${margin.left},${margin.top})`);
@@ -109,7 +112,10 @@ function drawTimeline() {
 
 function drawTechBarChart() {
     const container = d3.select("#tech-bar-chart").node();
-    const width = container.getBoundingClientRect().width - margin.left - margin.right;
+    const minWidth = 600;
+    const containerWidth = container.getBoundingClientRect().width;
+    const svgWidth = Math.max(containerWidth, minWidth);
+    const width = svgWidth - margin.left - margin.right;
     const height = 500 - margin.top - margin.bottom;
 
     // Limpa svg
@@ -117,7 +123,7 @@ function drawTechBarChart() {
 
     const svg = d3.select("#tech-bar-chart")
         .append("svg")
-        .attr("width", width + margin.left + margin.right)
+        .attr("width", svgWidth)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
         .attr("transform", `translate(${margin.left},${margin.top})`);
