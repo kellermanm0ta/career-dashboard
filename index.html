@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kellerman Mota - Tech Dashboard</title>
+    <!-- Modern Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- D3.js -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div>
+                <h1>Kellerman Mota</h1>
+                <p>Senior Software Engineer | Java | Spring Boot | Angular</p>
+            </div>
+            <div class="header-links">
+                <a href="https://www.linkedin.com/in/kellerman-paulo-da-mota" target="_blank">LinkedIn</a>
+                <a href="https://github.com/kellerman-mota" target="_blank">GitHub</a>
+            </div>
+        </header>
+
+        <!-- KPI Cards -->
+        <section class="kpi-section">
+            <div class="kpi-card">
+                <h3>Experiência Total</h3>
+                <h2 id="kpi-exp">-</h2>
+            </div>
+            <div class="kpi-card">
+                <h3>Principais Tecnologias</h3>
+                <h2 id="kpi-tech">-</h2>
+            </div>
+            <div class="kpi-card">
+                <h3>Principais Cursos Complementares</h3>
+                <h2 id="kpi-cert">-</h2>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <main class="dashboard-content">
+            <!-- Timeline Chart -->
+            <div class="chart-panel">
+                <div class="panel-header">
+                    <h2>Linha do Tempo: Experiência & Formação</h2>
+                    <p>Histórico profissional e acadêmico ao longo dos anos.</p>
+                </div>
+                <div class="chart-container" id="timeline-chart"></div>
+            </div>
+
+            <!-- Tech Bar Chart -->
+            <div class="chart-panel">
+                <div class="panel-header">
+                    <h2>Expertise em Tecnologias</h2>
+                    <p>Nível de proficiência baseado no tempo de exposição (anos).</p>
+                </div>
+                <div class="chart-container" id="tech-bar-chart"></div>
+            </div>
+
+            <!-- Certifications Table -->
+            <div class="chart-panel">
+                <div class="panel-header">
+                    <h2>Principais Cursos Complementares</h2>
+                    <p>Seleção dos treinamentos mais recentes e relevantes para a atuação atual.</p>
+                </div>
+                <table class="cert-table">
+                    <thead>
+                        <tr>
+                            <th>Descrição</th>
+                            <th>Ano / Mês</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cert-tbody">
+                        <!-- Content populated by D3.js -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+        
+        <!-- Footer -->
+        <footer class="dashboard-footer">
+            Kellerman Mota | 2026
+        </footer>
+    </div>
+
+    <!-- Tooltip Element -->
+    <div id="tooltip" class="tooltip" style="opacity: 0;"></div>
+
+    <!-- Scripts -->
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

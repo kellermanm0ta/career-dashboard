@@ -1,0 +1,241 @@
+:root {
+    --bg-dark: #0f172a;
+    --bg-panel: rgba(30, 41, 59, 0.7);
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --accent-blue: #3b82f6;
+    --accent-indigo: #6366f1;
+    --border-color: rgba(255, 255, 255, 0.1);
+    
+    /* Bar Colors */
+    --expert-color: #10b981;
+    --advanced-color: #3b82f6;
+    --intermediate-color: #f59e0b;
+    --basic-color: #94a3b8;
+    --academic-color: #8b5cf6;
+    --exp-color: #ec4899;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    min-height: 100vh;
+    padding: 2rem;
+    /* Subtle background gradient */
+    background: radial-gradient(circle at 10% 20%, rgb(15, 23, 42) 0%, rgb(30, 41, 59) 90%);
+}
+
+.dashboard-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Header */
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.dashboard-header h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, var(--text-primary), var(--text-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.dashboard-header p {
+    color: var(--text-secondary);
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.header-links a {
+    color: var(--accent-blue);
+    text-decoration: none;
+    margin-left: 1.5rem;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.header-links a:hover {
+    color: var(--text-primary);
+}
+
+/* KPI Section */
+.kpi-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.kpi-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.kpi-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.kpi-card h3 {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+}
+
+.kpi-card h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+/* Main Content */
+.dashboard-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+/* For larger screens, side by side if needed, but stacked is better for these wide charts */
+@media (min-width: 1200px) {
+    /* To make it side by side: grid-template-columns: 1fr 1fr; */
+}
+
+.chart-panel {
+    background: var(--bg-panel);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.panel-header {
+    margin-bottom: 1.5rem;
+}
+
+.panel-header h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+}
+
+.panel-header p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.chart-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* SVG D3 Elements */
+.axis text {
+    fill: var(--text-secondary);
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+}
+.axis path,
+.axis line {
+    stroke: var(--border-color);
+}
+
+.grid line {
+    stroke: var(--border-color);
+    stroke-opacity: 0.7;
+    stroke-dasharray: 4,4;
+}
+.grid path {
+    stroke-width: 0;
+}
+
+.bar {
+    transition: opacity 0.2s, fill 0.2s;
+    cursor: pointer;
+}
+
+.bar:hover {
+    opacity: 0.8;
+}
+
+/* Tooltip */
+.tooltip {
+    position: absolute;
+    text-align: left;
+    padding: 10px 15px;
+    font: 14px 'Inter', sans-serif;
+    background: rgba(15, 23, 42, 0.9);
+    color: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    pointer-events: none;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    backdrop-filter: blur(4px);
+    z-index: 10;
+    transition: opacity 0.2s;
+}
+
+/* Certifications Table */
+.cert-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    text-align: left;
+}
+
+.cert-table th, .cert-table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.cert-table th {
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+}
+
+.cert-table tr:hover td {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+.cert-table td:last-child {
+    white-space: nowrap;
+    color: var(--accent-blue);
+    font-weight: 600;
+}
+
+/* Footer */
+.dashboard-footer {
+    text-align: center;
+    padding: 2rem 0;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    border-top: 1px solid var(--border-color);
+    margin-top: 2rem;
+}
