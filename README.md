@@ -2,6 +2,8 @@
 
 > Um dashboard interativo e orientado a dados para visualizar minha trajetória profissional, acadêmica e stack tecnológica.
 
+**🔗 [Acesse o Dashboard ao vivo aqui!](https://kellermanm0ta.github.io/career-dashboard/)**
+
 ![Dashboard Preview](https://img.shields.io/badge/Status-Conclu%C3%ADdo-brightgreen)
 ![Tech Stack](https://img.shields.io/badge/Tech-HTML%20%7C%20CSS%20%7C%20D3.js-blue)
 
