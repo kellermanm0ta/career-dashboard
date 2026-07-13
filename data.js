@@ -32,7 +32,7 @@ const timelineData = [
         name: "Unimed Goiânia",
         startYear: 2015.4, 
         endYear: 2018.1, 
-        label: "Abr/2009 - Jan/2018"
+        label: "Abr/2015 - Jan/2018"
     },
     {
         category: "Acadêmico",
