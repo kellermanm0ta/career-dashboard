@@ -54,6 +54,13 @@ const timelineData = [
         startYear: 2012.0, // Estimate
         endYear: 2014.0,
         label: "2012 - 2014"
+    },
+        {
+        category: "Acadêmico",
+        name: "Técnico em Rede de Dados",
+        startYear: 2011.0, // Estimate
+        endYear: 2011.12,
+        label: "2011 - 2011"
     }
 ];
 
