@@ -50,7 +50,7 @@ const timelineData = [
     },
     {
         category: "Acadêmico",
-        name: "Tecnólogo em análise e desenvolvimento de sistemas",
+        name: "Tecnólogo em ADS",
         startYear: 2012.0, // Estimate
         endYear: 2014.0,
         label: "2012 - 2014"
