@@ -27,6 +27,13 @@ const timelineData = [
         endYear: 2018.8, // Oct 2018
         label: "Jan/2009 - Oct/2018"
     },
+     {
+        category: "Experiência",
+        name: "Unimed Goiânia",
+        startYear: 2015.4, 
+        endYear: 2018.1, 
+        label: "Abr/2009 - Jan/2018"
+    },
     {
         category: "Acadêmico",
         name: "Pós: Agentes Inteligentes (UFG)",
