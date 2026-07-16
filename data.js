@@ -99,11 +99,35 @@ const techData = [
     { name: "Linux", years: 5, level: "Intermediate", iconClass: "devicon-linux-plain" },
 ];
 
+const projectsData = [
+    {
+        name: "Medicina Popular do Cerrado",
+        description: `Aplicativo mobile desenvolvido por mim como artefato de entrega para a pesquisa da aluna Victória Leão, na disciplina de Educação Ambiental do Mestrado em Ambiente e Sociedade (UEG/Morrinhos).
+O objetivo do projeto é difundir os conhecimentos tradicionais associados ao patrimônio genético do Cerrado. A aplicação foi construída utilizando Ionic e Apache Cordova.`,
+        techs: ["Apache Cordova", "Angular/Ionic", "Node.js", "TypeScript"],
+        link: "https://github.com/kellerman-mota/med-pop-cerrado",
+        linkLabel: "Ver no GitHub",
+        icon: "fa-solid fa-seedling",
+        accentColor: "var(--expert-color)"
+    },
+    {
+        name: "Arrielstore – Sistema ERP para Micro e Pequenas Empresas",
+        description: `O Arrielstore é uma solução ERP completa voltada para a gestão de micro e pequenas empresas, abrangendo os módulos de Cadastro, Estoque, Vendas, Financeiro e Fiscal.
+Atuei em todo o ciclo de vida do software, participando ativamente das etapas de levantamento de requisitos, modelagem de dados, desenvolvimento e entrega do produto final.`,
+        techs: ["JSF", "Primefaces", "Hibernate", "Java", "Docker", "MySql"],
+        link: "https://www.arrielautomacao.com.br/",
+        linkLabel: "Ver Projeto",
+        icon: "fa-solid fa-store",
+        accentColor: "var(--accent-blue)"
+    }
+];
+
 // Sort descending by years
 techData.sort((a, b) => b.years - a.years);
 
 const kpis = {
     totalExperience: "13+ Anos",
     topTechnologies: techData.length,
-    certifications: certificationsData.length
+    certifications: certificationsData.length,
+    projects: projectsData.length
 };

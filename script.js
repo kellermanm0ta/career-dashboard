@@ -2,6 +2,7 @@
 document.getElementById('kpi-exp').innerText = kpis.totalExperience;
 document.getElementById('kpi-tech').innerText = kpis.topTechnologies;
 document.getElementById('kpi-cert').innerText = kpis.certifications;
+document.getElementById('kpi-project').innerText = kpis.projects;
 
 // Configurações comuns
 const tooltip = d3.select("#tooltip");
@@ -90,8 +91,8 @@ function drawTimeline() {
                 <em>${d.category}</em><br/>
                 Período: ${d.label}
             `)
-            .style("left", (event.pageX + 10) + "px")
-            .style("top", (event.pageY - 28) + "px");
+                .style("left", (event.pageX + 10) + "px")
+                .style("top", (event.pageY - 28) + "px");
         })
         .on("mouseout", () => {
             tooltip.transition().duration(500).style("opacity", 0);
@@ -155,7 +156,7 @@ function drawTechBarChart() {
 
     // Add icons to the y axis ticks
     svg.selectAll(".axis-y .tick")
-        .each(function(d) {
+        .each(function (d) {
             const tech = techData.find(t => t.name === d);
             if (tech && tech.iconClass) {
                 d3.select(this)
@@ -195,8 +196,8 @@ function drawTechBarChart() {
                 Nível: ${d.level}<br/>
                 Exposição: ${d.years} anos
             `)
-            .style("left", (event.pageX + 10) + "px")
-            .style("top", (event.pageY - 28) + "px");
+                .style("left", (event.pageX + 10) + "px")
+                .style("top", (event.pageY - 28) + "px");
         })
         .on("mouseout", () => {
             tooltip.transition().duration(500).style("opacity", 0);
@@ -296,10 +297,10 @@ function drawTechRadarChart() {
         .style("stroke-width", "1px");
 
     // Axis Labels and Icons
-    axes.each(function(d, i) {
+    axes.each(function (d, i) {
         const tech = techData.find(t => t.name === d);
         const g = d3.select(this);
-        
+
         // Text position
         const xText = rScale(maxLevel * 1.10) * Math.cos(angleSlice * i - Math.PI / 2);
         const yText = rScale(maxLevel * 1.10) * Math.sin(angleSlice * i - Math.PI / 2);
@@ -318,7 +319,7 @@ function drawTechRadarChart() {
         if (tech && tech.iconClass) {
             const xIcon = rScale(maxLevel * 1.25) * Math.cos(angleSlice * i - Math.PI / 2);
             const yIcon = rScale(maxLevel * 1.25) * Math.sin(angleSlice * i - Math.PI / 2);
-            
+
             g.append("foreignObject")
                 .attr("x", xIcon - 10) // shift by half of width to center
                 .attr("y", yIcon - 10) // shift by half of height to center
@@ -345,10 +346,10 @@ function drawTechRadarChart() {
         .style("fill-opacity", 0.2)
         .style("stroke", "var(--accent-blue)")
         .style("stroke-width", 2)
-        .on("mouseover", function() {
+        .on("mouseover", function () {
             d3.select(this).transition().duration(200).style("fill-opacity", 0.4);
         })
-        .on("mouseout", function() {
+        .on("mouseout", function () {
             d3.select(this).transition().duration(200).style("fill-opacity", 0.2);
         });
 
@@ -376,8 +377,8 @@ function drawTechRadarChart() {
                 Nível: ${d.level}<br/>
                 Exposição: ${d.years} anos
             `)
-            .style("left", (event.pageX + 10) + "px")
-            .style("top", (event.pageY - 28) + "px");
+                .style("left", (event.pageX + 10) + "px")
+                .style("top", (event.pageY - 28) + "px");
         })
         .on("mouseout", (event) => {
             d3.select(event.currentTarget).attr("r", 5);
@@ -390,7 +391,7 @@ function drawTechRadarChart() {
         .transition()
         .duration(1000)
         .attr("transform", "scale(1)");
-        
+
     svg.selectAll(".radar-point")
         .attr("transform", "scale(0)")
         .transition()
@@ -409,16 +410,16 @@ function drawDonutChart() {
     // Usa as mesmas CSS vars do restante da página
     const tipoColors = {
         "Pós-Graduação": "var(--academic-color)",   // #8b5cf6 roxo
-        "Graduação":     "var(--accent-blue)",       // #3b82f6 azul
-        "Técnico":       "var(--expert-color)",      // #10b981 verde
-        "Complementar":  "var(--intermediate-color)" // #f59e0b âmbar
+        "Graduação": "var(--accent-blue)",       // #3b82f6 azul
+        "Técnico": "var(--expert-color)",      // #10b981 verde
+        "Complementar": "var(--intermediate-color)" // #f59e0b âmbar
     };
     // Hex equivalentes para cálculos de opacidade no tooltip e legenda
     const tipoHex = {
         "Pós-Graduação": "#8b5cf6",
-        "Graduação":     "#3b82f6",
-        "Técnico":       "#10b981",
-        "Complementar":  "#f59e0b"
+        "Graduação": "#3b82f6",
+        "Técnico": "#10b981",
+        "Complementar": "#f59e0b"
     };
 
     // Agrega duração total (meses) por tipo
@@ -428,10 +429,10 @@ function drawDonutChart() {
     });
     const data = Object.entries(tipoMeses).map(([tipo, meses]) => ({ tipo, meses }));
     const totalMeses = data.reduce((sum, d) => sum + d.meses, 0);
-    const totalAnos  = (totalMeses / 12).toFixed(1);
+    const totalAnos = (totalMeses / 12).toFixed(1);
 
     const size = 300;
-    const radius      = size / 2 - 20;
+    const radius = size / 2 - 20;
     const innerRadius = radius * 0.55;
 
     const svg = d3.select("#donut-chart")
@@ -446,7 +447,7 @@ function drawDonutChart() {
         .sort(null)
         .padAngle(0.025);
 
-    const arc     = d3.arc().innerRadius(innerRadius).outerRadius(radius);
+    const arc = d3.arc().innerRadius(innerRadius).outerRadius(radius);
     const arcOver = d3.arc().innerRadius(innerRadius).outerRadius(radius + 10);
 
     const arcs = svg.selectAll(".arc")
@@ -461,7 +462,7 @@ function drawDonutChart() {
         .attr("stroke", "var(--bg-dark)")
         .attr("stroke-width", 2)
         .style("cursor", "pointer")
-        .on("mouseover", function(event, d) {
+        .on("mouseover", function (event, d) {
             d3.select(this).transition().duration(180).attr("d", arcOver).attr("fill-opacity", 1);
             tooltip.transition().duration(200).style("opacity", .9);
             const pct = Math.round(d.data.meses / totalMeses * 100);
@@ -471,18 +472,18 @@ function drawDonutChart() {
                 ${d.data.meses} meses (${anos} anos)<br/>
                 ${pct}% do tempo total
             `)
-            .style("left", (event.pageX + 10) + "px")
-            .style("top",  (event.pageY - 28) + "px");
+                .style("left", (event.pageX + 10) + "px")
+                .style("top", (event.pageY - 28) + "px");
         })
-        .on("mouseout", function() {
+        .on("mouseout", function () {
             d3.select(this).transition().duration(180).attr("d", arc).attr("fill-opacity", 0.85);
             tooltip.transition().duration(500).style("opacity", 0);
         })
-        .each(function(d) { this._current = { startAngle: 0, endAngle: 0 }; })
+        .each(function (d) { this._current = { startAngle: 0, endAngle: 0 }; })
         .transition()
         .duration(900)
         .ease(d3.easeCubicOut)
-        .attrTween("d", function(d) {
+        .attrTween("d", function (d) {
             const interp = d3.interpolate(this._current, d);
             this._current = interp(1);
             return t => arc(interp(t));
@@ -523,9 +524,9 @@ function drawDonutChart() {
     // Legenda em HTML — mesmo padrão visual do restante da página
     const legend = d3.select("#donut-legend");
     data.forEach(d => {
-        const pct  = Math.round(d.meses / totalMeses * 100);
+        const pct = Math.round(d.meses / totalMeses * 100);
         const anos = (d.meses / 12).toFixed(1);
-        const hex  = tipoHex[d.tipo] || "#94a3b8";
+        const hex = tipoHex[d.tipo] || "#94a3b8";
 
         const item = legend.append("div").attr("class", "donut-legend-item");
         item.append("div")
@@ -553,9 +554,9 @@ function populateCertifications() {
 
     const tipoColors = {
         "Pós-Graduação": { bg: "rgba(168, 85, 247, 0.2)", border: "rgba(168, 85, 247, 0.6)", color: "#c084fc" },
-        "Graduação":     { bg: "rgba(59, 130, 246, 0.2)", border: "rgba(59, 130, 246, 0.6)", color: "#60a5fa" },
-        "Técnico":       { bg: "rgba(16, 185, 129, 0.2)", border: "rgba(16, 185, 129, 0.6)", color: "#34d399" },
-        "Complementar":  { bg: "rgba(251, 191, 36, 0.15)", border: "rgba(251, 191, 36, 0.5)", color: "#fbbf24" }
+        "Graduação": { bg: "rgba(59, 130, 246, 0.2)", border: "rgba(59, 130, 246, 0.6)", color: "#60a5fa" },
+        "Técnico": { bg: "rgba(16, 185, 129, 0.2)", border: "rgba(16, 185, 129, 0.6)", color: "#34d399" },
+        "Complementar": { bg: "rgba(251, 191, 36, 0.15)", border: "rgba(251, 191, 36, 0.5)", color: "#fbbf24" }
     };
 
     const rows = tbody.selectAll("tr")
@@ -566,7 +567,7 @@ function populateCertifications() {
     // Coluna Descrição: link clicável + plataforma se disponíveis
     const nameTd = rows.append("td");
 
-    nameTd.each(function(d) {
+    nameTd.each(function (d) {
         const cell = d3.select(this);
         const wrapper = cell.append("div").style("display", "flex").style("flex-direction", "column").style("gap", "3px");
 
@@ -579,8 +580,8 @@ function populateCertifications() {
                 .style("text-decoration", "none")
                 .style("font-weight", "500")
                 .style("transition", "opacity 0.2s")
-                .on("mouseover", function() { d3.select(this).style("opacity", "0.75").style("text-decoration", "underline"); })
-                .on("mouseout",  function() { d3.select(this).style("opacity", "1").style("text-decoration", "none"); })
+                .on("mouseover", function () { d3.select(this).style("opacity", "0.75").style("text-decoration", "underline"); })
+                .on("mouseout", function () { d3.select(this).style("opacity", "1").style("text-decoration", "none"); })
                 .text(d.name);
         } else {
             wrapper.append("span").style("font-weight", "500").text(d.name);
@@ -609,6 +610,45 @@ function populateCertifications() {
     rows.append("td").text(d => d.periodo);
 }
 
+// Popula cards de projetos
+function populateProjects() {
+    const grid = document.getElementById("projects-grid");
+    if (!grid) return;
+    grid.innerHTML = "";
+
+    projectsData.forEach(p => {
+        const card = document.createElement("div");
+        card.className = "project-card";
+        // Aplica a cor de destaque como CSS custom property no card
+        card.style.setProperty("--project-accent", p.accentColor);
+
+        const techBadges = p.techs
+            .map(t => `<span class="project-tech-badge">${t}</span>`)
+            .join("");
+
+        const linkIcon = p.link.includes("github")
+            ? `<i class="fa-brands fa-github"></i>`
+            : `<i class="fa-solid fa-arrow-up-right-from-square"></i>`;
+
+        card.innerHTML = `
+            <div class="project-card-header">
+                <div class="project-card-icon" style="color: ${p.accentColor};">
+                    <i class="${p.icon}"></i>
+                </div>
+                <h3 class="project-card-title">${p.name}</h3>
+            </div>
+            <p class="project-card-description">${p.description}</p>
+            <div class="project-card-techs">${techBadges}</div>
+            <div class="project-card-footer">
+                <a class="project-card-link" href="${p.link}" target="_blank" rel="noopener noreferrer">
+                    ${linkIcon} ${p.linkLabel}
+                </a>
+            </div>
+        `;
+        grid.appendChild(card);
+    });
+}
+
 // Inicialização e Resize
 function init() {
     drawTimeline();
@@ -616,6 +656,7 @@ function init() {
     drawTechRadarChart();
     drawDonutChart();
     populateCertifications();
+    populateProjects();
 }
 
 init();
