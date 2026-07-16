@@ -246,16 +246,19 @@ function drawTechRadarChart() {
         .attr("transform", `translate(${svgWidth / 2},${height / 2})`);
 
     const features = techData.map(d => d.name);
-    const maxYears = Math.max(15, d3.max(techData, d => d.years)); 
+    // New level mapping
+    const levelMap = { "Basic": 1, "Intermediate": 2, "Advanced": 3, "Expert": 4 };
+    const levelNames = ["", "Básico", "Intermediário", "Avançado", "Expert"];
+    const maxLevel = 4;
     const angleSlice = (Math.PI * 2) / features.length;
 
-    // Scale
+    // Scale based on level (1 to 4) instead of years
     const rScale = d3.scaleLinear()
         .range([0, radius])
-        .domain([0, maxYears]);
+        .domain([0, maxLevel]);
 
-    // Grid circles
-    const levels = 5;
+    // Grid circles (4 levels)
+    const levels = 4;
     svg.selectAll(".grid-circle")
         .data(d3.range(1, levels + 1).reverse())
         .enter()
@@ -266,7 +269,7 @@ function drawTechRadarChart() {
         .style("stroke", "var(--border-color)")
         .style("stroke-dasharray", "4,4");
 
-    // Grid Labels
+    // Grid Labels (text categories instead of numbers)
     svg.selectAll(".grid-label")
         .data(d3.range(1, levels + 1).reverse())
         .enter()
@@ -275,7 +278,7 @@ function drawTechRadarChart() {
         .attr("x", 4)
         .style("fill", "var(--text-secondary)")
         .style("font-size", "10px")
-        .text(d => Math.round(maxYears * d / levels));
+        .text(d => levelNames[d]);
 
     // Axes
     const axes = svg.selectAll(".axis")
@@ -287,8 +290,8 @@ function drawTechRadarChart() {
     axes.append("line")
         .attr("x1", 0)
         .attr("y1", 0)
-        .attr("x2", (d, i) => rScale(maxYears) * Math.cos(angleSlice * i - Math.PI / 2))
-        .attr("y2", (d, i) => rScale(maxYears) * Math.sin(angleSlice * i - Math.PI / 2))
+        .attr("x2", (d, i) => rScale(maxLevel) * Math.cos(angleSlice * i - Math.PI / 2))
+        .attr("y2", (d, i) => rScale(maxLevel) * Math.sin(angleSlice * i - Math.PI / 2))
         .style("stroke", "var(--border-color)")
         .style("stroke-width", "1px");
 
@@ -298,8 +301,8 @@ function drawTechRadarChart() {
         const g = d3.select(this);
         
         // Text position
-        const xText = rScale(maxYears * 1.10) * Math.cos(angleSlice * i - Math.PI / 2);
-        const yText = rScale(maxYears * 1.10) * Math.sin(angleSlice * i - Math.PI / 2);
+        const xText = rScale(maxLevel * 1.10) * Math.cos(angleSlice * i - Math.PI / 2);
+        const yText = rScale(maxLevel * 1.10) * Math.sin(angleSlice * i - Math.PI / 2);
 
         g.append("text")
             .attr("class", "legend")
@@ -313,8 +316,8 @@ function drawTechRadarChart() {
 
         // Icon position slightly further out radially
         if (tech && tech.iconClass) {
-            const xIcon = rScale(maxYears * 1.25) * Math.cos(angleSlice * i - Math.PI / 2);
-            const yIcon = rScale(maxYears * 1.25) * Math.sin(angleSlice * i - Math.PI / 2);
+            const xIcon = rScale(maxLevel * 1.25) * Math.cos(angleSlice * i - Math.PI / 2);
+            const yIcon = rScale(maxLevel * 1.25) * Math.sin(angleSlice * i - Math.PI / 2);
             
             g.append("foreignObject")
                 .attr("x", xIcon - 10) // shift by half of width to center
@@ -331,7 +334,7 @@ function drawTechRadarChart() {
     // Radar Area
     const radarLine = d3.lineRadial()
         .angle((d, i) => i * angleSlice)
-        .radius(d => rScale(d.years))
+        .radius(d => rScale(levelMap[d.level] || 1))
         .curve(d3.curveLinearClosed);
 
     svg.append("path")
@@ -360,8 +363,8 @@ function drawTechRadarChart() {
         .append("circle")
         .attr("class", "radar-point")
         .attr("r", 5)
-        .attr("cx", (d, i) => rScale(d.years) * Math.cos(angleSlice * i - Math.PI / 2))
-        .attr("cy", (d, i) => rScale(d.years) * Math.sin(angleSlice * i - Math.PI / 2))
+        .attr("cx", (d, i) => rScale(levelMap[d.level] || 1) * Math.cos(angleSlice * i - Math.PI / 2))
+        .attr("cy", (d, i) => rScale(levelMap[d.level] || 1) * Math.sin(angleSlice * i - Math.PI / 2))
         .style("fill", d => colorScale(d.level))
         .style("stroke", "#fff")
         .style("stroke-width", 1)
