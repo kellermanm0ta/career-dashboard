@@ -27,11 +27,11 @@ const timelineData = [
         endYear: 2018.8, // Oct 2018
         label: "Jan/2009 - Oct/2018"
     },
-     {
+    {
         category: "Experiência",
         name: "Unimed Goiânia",
-        startYear: 2015.4, 
-        endYear: 2018.1, 
+        startYear: 2015.4,
+        endYear: 2018.1,
         label: "Abr/2015 - Jan/2018"
     },
     {
@@ -44,9 +44,9 @@ const timelineData = [
     {
         category: "Acadêmico",
         name: "Pós: Ciência de Dados e Big Data",
-        startYear: 2018.0, // Estimate
-        endYear: 2020.0,
-        label: "2018 - 2020"
+        startYear: 2017.0, // Estimate
+        endYear: 2019.0,
+        label: "2017 - 2019"
     },
     {
         category: "Acadêmico",
@@ -55,7 +55,7 @@ const timelineData = [
         endYear: 2014.0,
         label: "2012 - 2014"
     },
-        {
+    {
         category: "Acadêmico",
         name: "Técnico em Rede de Dados",
         startYear: 2011.0, // Estimate
@@ -65,11 +65,21 @@ const timelineData = [
 ];
 
 const certificationsData = [
-    { name: "Generative AI for Java Developers - Udemy", year: "08/2025" },
-    { name: "Clean Code - Udemy", year: "06/2024" },
-    { name: "Angular 15 Crash Course - Udemy", year: "02/2024" },
-    { name: "Data Privacy / Google Cloud Fundamentals - Coursera", year: "12/2023" },
-    { name: "Container & Kubernetes Essentials V2 - Coursera", year: "10/2023" }
+    // Pós-Graduação
+    { name: "Pós-Graduação em Agentes Inteligentes", plataforma: "Universidade Federal de Goiás", tipo: "Pós-Graduação", periodo: "Em Andamento" },
+    { name: "Pós-Graduação em Ciência de Dados e Big Data", plataforma: "Estácio", tipo: "Pós-Graduação", periodo: "2017 - 2019" },
+    // Graduação
+    { name: "Tecnólogo em Análise e Desenvolvimento de Sistemas", plataforma: "SENAI - FATESG", tipo: "Graduação", periodo: "2012 - 2014" },
+    // Técnico
+    { name: "Técnico em Redes de Dados", plataforma: "SENAI - FATESG", tipo: "Técnico", periodo: "2011 - 2012" },
+    // Complementares
+    { name: "Generative AI for Java Developers with Google AI", plataforma: "Udemy", tipo: "Complementar", periodo: "Ago/2025", link: "https://www.udemy.com/certificate/UC-66210e18-d7f7-457b-a8cb-d2f8f5f5f960/" },
+    { name: "Clean Code", plataforma: "Udemy", tipo: "Complementar", periodo: "Jun/2024", link: "https://www.udemy.com/certificate/UC-57ebd3ac-8dba-4bfd-9429-3d3cae94bcf6/" },
+    { name: "New Angular 15 Crash Course by Angular Engineering Founder", plataforma: "Udemy", tipo: "Complementar", periodo: "Fev/2024", link: "https://www.udemy.com/certificate/UC-123a529f-3649-4c8f-b2bd-ce1205b5bb6c/" },
+    { name: "Laboratório de Programação Orientada a Objetos - Parte 1 (IME-USP)", plataforma: "Coursera", tipo: "Complementar", periodo: "Dez/2023", link: "https://www.coursera.org/account/accomplishments/verify/JDV8DJH5WZ53" },
+    { name: "Data Privacy Fundamentals", plataforma: "Coursera", tipo: "Complementar", periodo: "Dez/2023", link: "https://www.coursera.org/account/accomplishments/verify/942XLQB8ABNZ" },
+    { name: "Google Cloud Fundamentals: Core Infrastructure", plataforma: "Coursera", tipo: "Complementar", periodo: "Dez/2023", link: "https://www.coursera.org/account/accomplishments/verify/9RAP5AUR3EU3" },
+    { name: "Container & Kubernetes Essentials V2", plataforma: "Coursera", tipo: "Complementar", periodo: "Ago/2023", link: "https://www.credly.com/badges/5456498e-fd39-40ea-b20f-89e071cb3b25/linked_in_profile" }
 ];
 
 const techData = [
@@ -95,5 +105,5 @@ techData.sort((a, b) => b.years - a.years);
 const kpis = {
     totalExperience: "13+ Anos",
     topTechnologies: 16,
-    certifications: 6
+    certifications: 11
 };

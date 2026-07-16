@@ -399,18 +399,67 @@ function drawTechRadarChart() {
         .attr("transform", "scale(1)");
 }
 
-// Popular tabela de certificações
+// Popular tabela de cursos
 function populateCertifications() {
     const tbody = d3.select("#cert-tbody");
     tbody.selectAll("*").remove();
+
+    const tipoColors = {
+        "Pós-Graduação": { bg: "rgba(168, 85, 247, 0.2)", border: "rgba(168, 85, 247, 0.6)", color: "#c084fc" },
+        "Graduação":     { bg: "rgba(59, 130, 246, 0.2)", border: "rgba(59, 130, 246, 0.6)", color: "#60a5fa" },
+        "Técnico":       { bg: "rgba(16, 185, 129, 0.2)", border: "rgba(16, 185, 129, 0.6)", color: "#34d399" },
+        "Complementar":  { bg: "rgba(251, 191, 36, 0.15)", border: "rgba(251, 191, 36, 0.5)", color: "#fbbf24" }
+    };
 
     const rows = tbody.selectAll("tr")
         .data(certificationsData)
         .enter()
         .append("tr");
 
-    rows.append("td").text(d => d.name);
-    rows.append("td").text(d => d.year);
+    // Coluna Descrição: link clicável + plataforma se disponíveis
+    const nameTd = rows.append("td");
+
+    nameTd.each(function(d) {
+        const cell = d3.select(this);
+        const wrapper = cell.append("div").style("display", "flex").style("flex-direction", "column").style("gap", "3px");
+
+        if (d.link) {
+            wrapper.append("a")
+                .attr("href", d.link)
+                .attr("target", "_blank")
+                .attr("rel", "noopener noreferrer")
+                .style("color", "var(--accent-blue)")
+                .style("text-decoration", "none")
+                .style("font-weight", "500")
+                .style("transition", "opacity 0.2s")
+                .on("mouseover", function() { d3.select(this).style("opacity", "0.75").style("text-decoration", "underline"); })
+                .on("mouseout",  function() { d3.select(this).style("opacity", "1").style("text-decoration", "none"); })
+                .text(d.name);
+        } else {
+            wrapper.append("span").style("font-weight", "500").text(d.name);
+        }
+
+        if (d.plataforma) {
+            wrapper.append("span")
+                .style("font-size", "11px")
+                .style("color", "var(--text-secondary)")
+                .text(d.plataforma);
+        }
+    });
+
+    rows.append("td").append("span")
+        .style("padding", "3px 10px")
+        .style("border-radius", "20px")
+        .style("font-size", "11px")
+        .style("font-weight", "600")
+        .style("letter-spacing", "0.5px")
+        .style("white-space", "nowrap")
+        .style("background", d => (tipoColors[d.tipo] || tipoColors["Complementar"]).bg)
+        .style("border", d => `1px solid ${(tipoColors[d.tipo] || tipoColors["Complementar"]).border}`)
+        .style("color", d => (tipoColors[d.tipo] || tipoColors["Complementar"]).color)
+        .text(d => d.tipo);
+
+    rows.append("td").text(d => d.periodo);
 }
 
 // Inicialização e Resize
