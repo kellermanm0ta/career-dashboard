@@ -16,6 +16,10 @@
     --exp-color: #ec4899;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -91,6 +95,16 @@ body {
     -webkit-backdrop-filter: blur(10px);
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.kpi-card[data-target] {
+    cursor: pointer;
+}
+
+.kpi-card[data-target]:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border-color: rgba(255, 255, 255, 0.25);
 }
 
 .kpi-card:hover {

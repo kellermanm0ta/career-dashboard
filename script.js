@@ -661,6 +661,27 @@ function init() {
 
 init();
 
+// Navegação por clique nos KPI cards
+document.querySelectorAll('.kpi-card[data-target]').forEach(card => {
+    const scrollToSection = () => {
+        const targetId = card.getAttribute('data-target');
+        const target = document.getElementById(targetId);
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    };
+
+    card.addEventListener('click', scrollToSection);
+
+    // Acessibilidade: permite ativar com Enter e Space
+    card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            scrollToSection();
+        }
+    });
+});
+
 window.addEventListener("resize", () => {
     // Debounce resize
     clearTimeout(window.resizeTimer);

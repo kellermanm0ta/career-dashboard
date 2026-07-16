@@ -41,23 +41,23 @@
 
         <!-- KPI Cards -->
         <section class="kpi-section">
-            <div class="kpi-card">
+            <div class="kpi-card" data-target="section-experience" role="button" tabindex="0" title="Ver experiências">
                 <h3><i class="fa-solid fa-calendar-check"
                         style="margin-right: 8px; color: var(--exp-color);"></i>Experiência Total</h3>
                 <h2 id="kpi-exp">-</h2>
             </div>
-            <div class="kpi-card">
+            <div class="kpi-card" data-target="section-tech" role="button" tabindex="0" title="Ver tecnologias">
                 <h3><i class="fa-solid fa-microchip"
                         style="margin-right: 8px; color: var(--accent-blue);"></i>Principais Tecnologias</h3>
                 <h2 id="kpi-tech">-</h2>
             </div>
-            <div class="kpi-card">
+            <div class="kpi-card" data-target="section-courses" role="button" tabindex="0" title="Ver cursos">
                 <h3><i class="fa-solid fa-graduation-cap"
                         style="margin-right: 8px; color: var(--academic-color);"></i>Cursos
                 </h3>
                 <h2 id="kpi-cert">-</h2>
             </div>
-            <div class="kpi-card">
+            <div class="kpi-card" data-target="section-projects" role="button" tabindex="0" title="Ver projetos">
                 <h3><i class="fa-solid fa-code-branch"
                         style="margin-right: 8px; color: var(--academic-color);"></i>Projetos
                 </h3>
@@ -68,7 +68,7 @@
         <!-- Main Content -->
         <main class="dashboard-content">
             <!-- Timeline Chart -->
-            <div class="chart-panel">
+            <div class="chart-panel" id="section-experience">
                 <div class="panel-header">
                     <h2>Linha do Tempo: Experiência & Formação</h2>
                     <p>Histórico profissional e acadêmico ao longo dos anos.</p>
@@ -77,7 +77,7 @@
             </div>
 
             <!-- Tech Bar Chart -->
-            <div class="chart-panel">
+            <div class="chart-panel" id="section-tech">
                 <div class="panel-header">
                     <h2>Expertise em Tecnologias</h2>
                     <p>Nível de proficiência baseado no tempo de exposição (anos).</p>
@@ -107,7 +107,7 @@
             </div>
 
             <!-- Certifications Table -->
-            <div class="chart-panel">
+            <div class="chart-panel" id="section-courses">
                 <div class="panel-header">
                     <h2>Cursos</h2>
                     <p>Formações acadêmicas, cursos técnicos e treinamentos complementares relevantes.</p>
@@ -126,7 +126,7 @@
                 </table>
             </div>
             <!-- Projects -->
-            <div class="chart-panel">
+            <div class="chart-panel" id="section-projects">
                 <div class="panel-header">
                     <h2><i class="fa-solid fa-code-branch"
                             style="margin-right: 10px; color: var(--accent-blue);"></i>Projetos em Destaque</h2>
