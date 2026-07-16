@@ -59,20 +59,20 @@ const certificationsData = [
 ];
 
 const techData = [
-    { name: "Java", years: 13, level: "Expert" },
-    { name: "Spring Boot", years: 8, level: "Advanced" },
-    { name: "Angular", years: 8, level: "Advanced" },
-    { name: "Node.js", years: 8, level: "Advanced" },
-    { name: "DB2", years: 6, level: "Advanced" },
-    { name: "WebSphere", years: 6, level: "Advanced" },
-    { name: "Docker", years: 4, level: "Intermediate" },
-    { name: "Kafka", years: 1, level: "Basic" },
-    { name: "Hibernate", years: 8, level: "Advanced" },
-    { name: "PrimeFaces", years: 3, level: "Intermediate" },
-    { name: "SQL (MySQL/Oracle/PostgreSQL)", years: 13, level: "Expert" },
-    { name: "TypeScript/JavaScript", years: 8, level: "Advanced" },
-    { name: "C# / .NET", years: 2, level: "Intermediate" },
-    { name: "Suporte ao Cliente e Treinamento", years: 2, level: "Intermediate" },
+    { name: "Java", years: 13, level: "Expert", iconClass: "devicon-java-plain" },
+    { name: "Spring Boot", years: 8, level: "Advanced", iconClass: "devicon-spring-original colored" },
+    { name: "Angular", years: 8, level: "Advanced", iconClass: "devicon-angular-plain colored" },
+    { name: "Node.js", years: 8, level: "Advanced", iconClass: "devicon-nodejs-plain-wordmark colored" },
+    { name: "WebSphere", years: 6, level: "Advanced", iconClass: "fa-solid fa-server" }, // Generic Server icon for App Server
+    { name: "Docker", years: 4, level: "Intermediate", iconClass: "devicon-docker-plain colored" },
+    { name: "Kafka", years: 1, level: "Basic", iconClass: "devicon-apachekafka-original" },
+    { name: "Hibernate", years: 8, level: "Advanced", iconClass: "devicon-hibernate-plain colored" },
+    { name: "JSF", years: 3, level: "Intermediate", iconClass: "devicon-java-plain colored" }, // JSF is a Java spec, so Java icon works best as fallback
+    { name: "JQuery", years: 3, level: "Intermediate", iconClass: "devicon-jquery-plain-wordmark" },
+    { name: "SQL", years: 13, level: "Expert", iconClass: "devicon-azuresqldatabase-plain" },
+    { name: "TypeScript/JavaScript", years: 8, level: "Advanced", iconClass: "devicon-typescript-plain colored" },
+    { name: "C# / .NET", years: 2, level: "Intermediate", iconClass: "devicon-csharp-plain colored" },
+    { name: "Linux", years: 5, level: "Intermediate", iconClass: "devicon-linux-plain" },
 ];
 
 // Sort descending by years
