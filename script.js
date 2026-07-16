@@ -399,6 +399,153 @@ function drawTechRadarChart() {
         .attr("transform", "scale(1)");
 }
 
+function drawDonutChart() {
+    const container = d3.select("#donut-chart").node();
+    if (!container) return;
+
+    d3.select("#donut-chart").selectAll("*").remove();
+    d3.select("#donut-legend").html("");
+
+    // Usa as mesmas CSS vars do restante da página
+    const tipoColors = {
+        "Pós-Graduação": "var(--academic-color)",   // #8b5cf6 roxo
+        "Graduação":     "var(--accent-blue)",       // #3b82f6 azul
+        "Técnico":       "var(--expert-color)",      // #10b981 verde
+        "Complementar":  "var(--intermediate-color)" // #f59e0b âmbar
+    };
+    // Hex equivalentes para cálculos de opacidade no tooltip e legenda
+    const tipoHex = {
+        "Pós-Graduação": "#8b5cf6",
+        "Graduação":     "#3b82f6",
+        "Técnico":       "#10b981",
+        "Complementar":  "#f59e0b"
+    };
+
+    // Agrega duração total (meses) por tipo
+    const tipoMeses = {};
+    certificationsData.forEach(d => {
+        tipoMeses[d.tipo] = (tipoMeses[d.tipo] || 0) + (d.duracaoMeses || 0);
+    });
+    const data = Object.entries(tipoMeses).map(([tipo, meses]) => ({ tipo, meses }));
+    const totalMeses = data.reduce((sum, d) => sum + d.meses, 0);
+    const totalAnos  = (totalMeses / 12).toFixed(1);
+
+    const size = 300;
+    const radius      = size / 2 - 20;
+    const innerRadius = radius * 0.55;
+
+    const svg = d3.select("#donut-chart")
+        .append("svg")
+        .attr("width", size)
+        .attr("height", size)
+        .append("g")
+        .attr("transform", `translate(${size / 2},${size / 2})`);
+
+    const pie = d3.pie()
+        .value(d => d.meses)
+        .sort(null)
+        .padAngle(0.025);
+
+    const arc     = d3.arc().innerRadius(innerRadius).outerRadius(radius);
+    const arcOver = d3.arc().innerRadius(innerRadius).outerRadius(radius + 10);
+
+    const arcs = svg.selectAll(".arc")
+        .data(pie(data))
+        .enter()
+        .append("g")
+        .attr("class", "arc");
+
+    arcs.append("path")
+        .attr("fill", d => tipoColors[d.data.tipo] || "var(--text-secondary)")
+        .attr("fill-opacity", 0.85)
+        .attr("stroke", "var(--bg-dark)")
+        .attr("stroke-width", 2)
+        .style("cursor", "pointer")
+        .on("mouseover", function(event, d) {
+            d3.select(this).transition().duration(180).attr("d", arcOver).attr("fill-opacity", 1);
+            tooltip.transition().duration(200).style("opacity", .9);
+            const pct = Math.round(d.data.meses / totalMeses * 100);
+            const anos = (d.data.meses / 12).toFixed(1);
+            tooltip.html(`
+                <strong>${d.data.tipo}</strong><br/>
+                ${d.data.meses} meses (${anos} anos)<br/>
+                ${pct}% do tempo total
+            `)
+            .style("left", (event.pageX + 10) + "px")
+            .style("top",  (event.pageY - 28) + "px");
+        })
+        .on("mouseout", function() {
+            d3.select(this).transition().duration(180).attr("d", arc).attr("fill-opacity", 0.85);
+            tooltip.transition().duration(500).style("opacity", 0);
+        })
+        .each(function(d) { this._current = { startAngle: 0, endAngle: 0 }; })
+        .transition()
+        .duration(900)
+        .ease(d3.easeCubicOut)
+        .attrTween("d", function(d) {
+            const interp = d3.interpolate(this._current, d);
+            this._current = interp(1);
+            return t => arc(interp(t));
+        });
+
+    // Anel externo decorativo (igual ao estilo das grid-circles do radar)
+    svg.append("circle")
+        .attr("r", radius + 4)
+        .attr("fill", "none")
+        .attr("stroke", "var(--border-color)")
+        .attr("stroke-dasharray", "4,4");
+
+    // Texto central: total em anos
+    svg.append("text")
+        .attr("text-anchor", "middle")
+        .attr("dy", "-0.25em")
+        .attr("font-family", "Inter, sans-serif")
+        .attr("font-size", "2rem")
+        .attr("font-weight", "700")
+        .attr("fill", "var(--text-primary)")
+        .style("opacity", 0)
+        .text(`${totalAnos}`)
+        .transition().delay(750).duration(400)
+        .style("opacity", 1);
+
+    svg.append("text")
+        .attr("text-anchor", "middle")
+        .attr("dy", "1.3em")
+        .attr("font-family", "Inter, sans-serif")
+        .attr("font-size", "11px")
+        .attr("fill", "var(--text-secondary)")
+        .attr("letter-spacing", "0.08em")
+        .style("opacity", 0)
+        .text("ANOS DE ESTUDO")
+        .transition().delay(750).duration(400)
+        .style("opacity", 1);
+
+    // Legenda em HTML — mesmo padrão visual do restante da página
+    const legend = d3.select("#donut-legend");
+    data.forEach(d => {
+        const pct  = Math.round(d.meses / totalMeses * 100);
+        const anos = (d.meses / 12).toFixed(1);
+        const hex  = tipoHex[d.tipo] || "#94a3b8";
+
+        const item = legend.append("div").attr("class", "donut-legend-item");
+        item.append("div")
+            .attr("class", "donut-legend-swatch")
+            .style("background", hex)
+            .style("opacity", "0.85");
+        const text = item.append("div").style("flex", "1");
+        text.append("span").attr("class", "donut-legend-label").text(d.tipo);
+        text.append("span")
+            .attr("class", "donut-legend-pct")
+            .style("display", "block")
+            .style("font-size", "11px")
+            .style("margin-top", "1px")
+            .text(`${d.meses} meses · ${anos} anos`);
+        item.append("span")
+            .attr("class", "donut-legend-count")
+            .text(`${pct}%`);
+    });
+}
+
 // Popular tabela de cursos
 function populateCertifications() {
     const tbody = d3.select("#cert-tbody");
@@ -467,6 +614,7 @@ function init() {
     drawTimeline();
     drawTechBarChart();
     drawTechRadarChart();
+    drawDonutChart();
     populateCertifications();
 }
 
