@@ -27,6 +27,13 @@ const timelineData = [
         endYear: 2018.8, // Oct 2018
         label: "Jan/2009 - Oct/2018"
     },
+     {
+        category: "Experiência",
+        name: "Unimed Goiânia",
+        startYear: 2015.4, 
+        endYear: 2018.1, 
+        label: "Abr/2015 - Jan/2018"
+    },
     {
         category: "Acadêmico",
         name: "Pós: Agentes Inteligentes (UFG)",
@@ -43,10 +50,17 @@ const timelineData = [
     },
     {
         category: "Acadêmico",
-        name: "Tecnólogo em análise e desenvolvimento de sistemas",
+        name: "Tecnólogo em ADS",
         startYear: 2012.0, // Estimate
         endYear: 2014.0,
         label: "2012 - 2014"
+    },
+        {
+        category: "Acadêmico",
+        name: "Técnico em Rede de Dados",
+        startYear: 2011.0, // Estimate
+        endYear: 2012.0,
+        label: "2011-2012"
     }
 ];
 
