@@ -1,3 +1,98 @@
+const experienceDetails = {
+    "Sicoob Confederação": {
+        role: "Senior Software Engineer",
+        period: "Outubro/2021 – Atual",
+        summary: "Atuação no desenvolvimento e evolução de sistemas corporativos estratégicos utilizados por cooperativas de crédito em todo o Brasil.",
+        contributions: [
+            "Referência técnica em decisões arquiteturais e implementação de funcionalidades críticas.",
+            "Desenvolvimento de APIs REST e integrações entre sistemas corporativos.",
+            "Revisão de código e apoio técnico à equipe.",
+            "Investigação e resolução de incidentes em ambientes produtivos.",
+            "Aplicação de práticas de qualidade como TDD, CI/CD e Code Review.",
+            "Participação ativa em refinamentos técnicos e definição de soluções."
+        ],
+        projects: [
+            {
+                name: "Portal Centro de Serviços Compartilhados (CSC)",
+                description: "Plataforma corporativa responsável pela centralização, execução, acompanhamento e contabilização dos serviços prestados pela Confederação às cooperativas do Sistema Sicoob. O sistema promove padronização operacional, rastreabilidade dos processos e integração entre diferentes áreas de negócio."
+            },
+            {
+                name: "Sistema de Gestão Empresarial (SGE)",
+                description: "ERP corporativo utilizado pelas cooperativas do ecossistema Sicoob para gestão administrativa e operacional. Atuação na evolução de funcionalidades críticas, integrações e sustentação da plataforma, contribuindo para a confiabilidade e escalabilidade da solução."
+            }
+        ],
+        techs: ["Java EE", "Angular", "Node.js", "DB2", "WebSphere", "Docker", "Jenkins", "GitLab", "SonarQube"]
+    },
+    "Mirante Tecnologia": {
+        role: "Software Engineer (Projeto Sicoob)",
+        period: "Julho/2020 – Outubro/2021",
+        summary: "Atuação na sustentação e evolução do Sistema de Gestão Empresarial (SGE), ERP corporativo do Sicoob.",
+        contributions: [
+            "Desenvolvimento de funcionalidades evolutivas.",
+            "Correção de problemas críticos em produção.",
+            "Participação em análises técnicas e refinamentos.",
+            "Implementação de testes automatizados.",
+            "Apoio às práticas de integração contínua e DevOps."
+        ],
+        projects: [],
+        techs: ["Java EE", "EJB", "DB2", "WebSphere", "Jenkins", "GitLab", "SonarQube"]
+    },
+    "ITSS Tecnologia": {
+        role: "Full Stack Software Engineer",
+        period: "Fevereiro/2018 – Julho/2020",
+        summary: "Atuação em fábrica de software desenvolvendo soluções para clientes dos segmentos farmacêutico, agronegócio e educação.",
+        contributions: [
+            "Plataformas de vendas e distribuição para o Grupo SC (Santa Cruz e Panpharma).",
+            "Soluções de apoio à cadeia produtiva para o Grupo Cereal.",
+            "Migração e modernização de sistemas acadêmicos da UNIALFA.",
+            "Desenvolvimento de integrações, aplicações web, mobile e processos ETL."
+        ],
+        projects: [],
+        techs: ["Java", "Spring Boot", "Angular", "Ionic", "Kafka", "Docker", "Oracle", "PostgreSQL", "Hadoop", "WildFly"]
+    },
+    "Arriel Automação": {
+        role: "Software Engineer / Technical Lead",
+        period: "Janeiro/2009 – Outubro/2018",
+        summary: "Participação na criação e evolução de um ERP comercial voltado para pequenas e médias empresas.",
+        contributions: [
+            "Desenvolvimento de módulos de vendas, estoque, financeiro e compras.",
+            "Levantamento e análise de requisitos junto aos clientes.",
+            "Modelagem de banco de dados e regras de negócio.",
+            "Definição e evolução da arquitetura da solução.",
+            "Liderança técnica de equipe de desenvolvimento.",
+            "Implantação, treinamento e suporte a clientes."
+        ],
+        projects: [],
+        techs: ["Java", "Hibernate", "PrimeFaces", "Tomcat", "MySQL", ".NET"]
+    },
+    "Unimed Goiânia": {
+        role: "Full Stack Software Engineer",
+        period: "2015 – Fevereiro/2018",
+        summary: "Atuação como Desenvolvedor Full Stack na evolução dos canais digitais e sistemas corporativos da Unimed Goiânia, desenvolvendo soluções voltadas para beneficiários, cooperados e áreas internas da cooperativa.",
+        contributions: [
+            "Desenvolvimento e manutenção de aplicações web corporativas.",
+            "Implementação de novas funcionalidades e melhorias evolutivas.",
+            "Desenvolvimento de APIs REST para integração com aplicativos móveis e sistemas internos.",
+            "Evolução do Guia Médico e demais serviços digitais da cooperativa.",
+            "Implementação do Portal de Informações do Beneficiário da Saúde Suplementar (PINSS).",
+            "Desenvolvimento de soluções utilizando IBM WebSphere Portal.",
+            "Correção de incidentes e suporte a sistemas em produção.",
+            "Participação em iniciativas de modernização de sistemas legados."
+        ],
+        projects: [
+            {
+                name: "PINSS – Portal de Informações do Beneficiário da Saúde Suplementar",
+                description: "Implementação do portal que centraliza informações e serviços digitais para beneficiários do plano de saúde, ampliando o acesso dos usuários aos serviços da cooperativa."
+            },
+            {
+                name: "Guia Médico & Serviços Digitais",
+                description: "Evolução do Guia Médico online e implementação de funcionalidades estratégicas como emissão de segunda via de boletos, contribuindo para a digitalização de processos e melhoria da experiência dos usuários."
+            }
+        ],
+        techs: ["Java", "Spring Framework", "Hibernate", "Angular", "jQuery", "IBM WebSphere Portal", "JasperReports", "APIs REST", "TDD", "DDD"]
+    }
+};
+
 const timelineData = [
     {
         category: "Experiência",

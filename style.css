@@ -133,6 +133,214 @@ body {
     gap: 2rem;
 }
 
+/* Experience Modal */
+.exp-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    animation: fadeInOverlay 0.2s ease;
+}
+
+.exp-modal-overlay.active {
+    display: flex;
+}
+
+@keyframes fadeInOverlay {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.exp-modal {
+    background: #1a2540;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 16px;
+    width: 100%;
+    max-width: 680px;
+    max-height: 88vh;
+    overflow-y: auto;
+    padding: 2rem;
+    position: relative;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+    animation: slideUpModal 0.25s ease;
+}
+
+@keyframes slideUpModal {
+    from { transform: translateY(30px); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
+}
+
+.exp-modal-close {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    color: var(--text-secondary);
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, color 0.2s;
+}
+
+.exp-modal-close:hover {
+    background: rgba(255,255,255,0.15);
+    color: var(--text-primary);
+}
+
+.exp-modal-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.2rem;
+    margin-bottom: 1.5rem;
+    padding-right: 2.5rem;
+}
+
+.exp-modal-icon {
+    width: 52px;
+    height: 52px;
+    min-width: 52px;
+    background: linear-gradient(135deg, var(--exp-color), #f97316);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    color: #fff;
+}
+
+.exp-modal-company {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.2rem;
+}
+
+.exp-modal-role {
+    font-size: 0.95rem;
+    color: var(--accent-blue);
+    font-weight: 600;
+    margin-bottom: 0.15rem;
+}
+
+.exp-modal-period {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.exp-modal-period::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: var(--exp-color);
+    border-radius: 50%;
+}
+
+.exp-modal-summary {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    border-left: 3px solid var(--exp-color);
+    padding-left: 1rem;
+}
+
+.exp-modal-section {
+    margin-bottom: 1.5rem;
+}
+
+.exp-modal-section h3 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-secondary);
+    margin-bottom: 0.8rem;
+}
+
+.exp-modal-section ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.exp-modal-section ul li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.exp-modal-section ul li::before {
+    content: '▸';
+    color: var(--exp-color);
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+.exp-modal-project-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.exp-modal-project-card strong {
+    display: block;
+    color: var(--accent-blue);
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+}
+
+.exp-modal-project-card p {
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    line-height: 1.6;
+}
+
+.exp-modal-techs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.exp-modal-tech-tag {
+    background: rgba(99, 102, 241, 0.15);
+    border: 1px solid rgba(99, 102, 241, 0.35);
+    color: #a5b4fc;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 3px 12px;
+    border-radius: 20px;
+}
+
+/* Cursor pointer nas barras de experiência */
+.bar-clickable {
+    cursor: pointer;
+}
+
+.bar-clickable:hover {
+    filter: brightness(1.2);
+}
+
 /* For larger screens, side by side if needed, but stacked is better for these wide charts */
 @media (min-width: 1200px) {
     /* To make it side by side: grid-template-columns: 1fr 1fr; */

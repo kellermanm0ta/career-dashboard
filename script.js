@@ -77,7 +77,7 @@ function drawTimeline() {
         .data(timelineData)
         .enter()
         .append("rect")
-        .attr("class", "bar")
+        .attr("class", d => d.category === "Experiência" && experienceDetails[d.name] ? "bar bar-clickable" : "bar")
         .attr("x", d => x(d.startYear))
         .attr("y", d => y(d.name))
         .attr("width", d => Math.max(x(d.endYear) - x(d.startYear), 5))
@@ -86,16 +86,23 @@ function drawTimeline() {
         .attr("rx", 6)
         .on("mouseover", (event, d) => {
             tooltip.transition().duration(200).style("opacity", .9);
+            const hint = d.category === "Experiência" && experienceDetails[d.name] ? "<br/><em style='color:#94a3b8;font-size:11px;'>Clique para ver detalhes</em>" : "";
             tooltip.html(`
                 <strong>${d.name}</strong><br/>
                 <em>${d.category}</em><br/>
-                Período: ${d.label}
+                Período: ${d.label}${hint}
             `)
                 .style("left", (event.pageX + 10) + "px")
                 .style("top", (event.pageY - 28) + "px");
         })
         .on("mouseout", () => {
             tooltip.transition().duration(500).style("opacity", 0);
+        })
+        .on("click", (event, d) => {
+            if (d.category === "Experiência" && experienceDetails[d.name]) {
+                tooltip.transition().duration(200).style("opacity", 0);
+                openExpModal(d.name);
+            }
         });
 
     // Labels dentro das barras (opcional)
@@ -660,6 +667,73 @@ function init() {
 }
 
 init();
+
+// ─── Modal de Detalhes de Experiência ────────────────────────────────────────
+
+function openExpModal(companyName) {
+    const data = experienceDetails[companyName];
+    if (!data) return;
+
+    document.getElementById('exp-modal-title').textContent = companyName;
+    document.querySelector('.exp-modal-role').textContent = data.role;
+    document.querySelector('.exp-modal-period').textContent = data.period;
+    document.querySelector('.exp-modal-summary').textContent = data.summary;
+
+    // Contribuições
+    const ul = document.getElementById('exp-modal-contributions');
+    ul.innerHTML = '';
+    data.contributions.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        ul.appendChild(li);
+    });
+
+    // Projetos
+    const projectsSection = document.getElementById('exp-modal-projects-section');
+    const projectsContainer = document.getElementById('exp-modal-projects');
+    projectsContainer.innerHTML = '';
+    if (data.projects && data.projects.length > 0) {
+        projectsSection.style.display = '';
+        data.projects.forEach(p => {
+            const card = document.createElement('div');
+            card.className = 'exp-modal-project-card';
+            card.innerHTML = `<strong>${p.name}</strong><p>${p.description}</p>`;
+            projectsContainer.appendChild(card);
+        });
+    } else {
+        projectsSection.style.display = 'none';
+    }
+
+    // Tecnologias
+    const techsContainer = document.getElementById('exp-modal-techs');
+    techsContainer.innerHTML = '';
+    data.techs.forEach(tech => {
+        const tag = document.createElement('span');
+        tag.className = 'exp-modal-tech-tag';
+        tag.textContent = tech;
+        techsContainer.appendChild(tag);
+    });
+
+    document.getElementById('exp-modal-overlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeExpModal() {
+    document.getElementById('exp-modal-overlay').classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+document.getElementById('exp-modal-close').addEventListener('click', closeExpModal);
+
+document.getElementById('exp-modal-overlay').addEventListener('click', (e) => {
+    if (e.target === document.getElementById('exp-modal-overlay')) closeExpModal();
+});
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeExpModal();
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
 
 // Navegação por clique nos KPI cards
 document.querySelectorAll('.kpi-card[data-target]').forEach(card => {

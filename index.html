@@ -147,6 +147,40 @@
     <!-- Tooltip Element -->
     <div id="tooltip" class="tooltip" style="opacity: 0;"></div>
 
+    <!-- Experience Modal -->
+    <div id="exp-modal-overlay" class="exp-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="exp-modal-title">
+        <div class="exp-modal">
+            <button class="exp-modal-close" id="exp-modal-close" aria-label="Fechar">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="exp-modal-header">
+                <div class="exp-modal-icon">
+                    <i class="fa-solid fa-briefcase"></i>
+                </div>
+                <div>
+                    <h2 id="exp-modal-title" class="exp-modal-company"></h2>
+                    <p class="exp-modal-role"></p>
+                    <p class="exp-modal-period"></p>
+                </div>
+            </div>
+            <div class="exp-modal-body">
+                <p class="exp-modal-summary"></p>
+                <div class="exp-modal-section" id="exp-modal-contributions-section">
+                    <h3><i class="fa-solid fa-star" style="margin-right:8px;color:var(--exp-color);"></i>Principais Contribuições</h3>
+                    <ul id="exp-modal-contributions"></ul>
+                </div>
+                <div class="exp-modal-section" id="exp-modal-projects-section">
+                    <h3><i class="fa-solid fa-diagram-project" style="margin-right:8px;color:var(--accent-blue);"></i>Projetos de Destaque</h3>
+                    <div id="exp-modal-projects"></div>
+                </div>
+                <div class="exp-modal-section">
+                    <h3><i class="fa-solid fa-microchip" style="margin-right:8px;color:var(--academic-color);"></i>Tecnologias</h3>
+                    <div id="exp-modal-techs" class="exp-modal-techs"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Scripts -->
     <script src="data.js"></script>
     <script src="script.js"></script>
