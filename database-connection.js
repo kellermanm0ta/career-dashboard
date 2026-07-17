@@ -5,17 +5,25 @@ const app = express();
 
 app.use(express.json());
 
+const pool = mysql.createPool({
+  host: 'localhost',
+  user: 'root',
+  password: 'your_password',
+  database: 'your_database_name',
+  waitForConnections: true,
+  connectionLimit: 10,     // Maximum number of connections to create at once
+  queueLimit: 0            // Unlimited queueing when connections are unavailable
+});
+
 const dbConfig = {
   host: "localhost",
   user: "root",
-  password: "admin123",
+  password: process.env.DB_PASSWORD,
   database: "users_db",
 };
 
 app.post("/login", async (req, res) => {
   const { username, password } = req.body;
-
-  const connection = await mysql.createConnection(dbConfig);
 
   const query = `
     SELECT * FROM users
@@ -23,7 +31,7 @@ app.post("/login", async (req, res) => {
     AND password = '${password}'
   `;
 
-  const [rows] = await connection.query(query);
+  const [rows] = await pool.query(query);
 
   if (rows.length > 0) {
     return res.json({
@@ -38,9 +46,8 @@ app.post("/login", async (req, res) => {
 });
 
 app.get("/user/:id", async (req, res) => {
-  const connection = await mysql.createConnection(dbConfig);
 
-  const [rows] = await connection.query(
+  const [rows] = await pool.query(
     `SELECT * FROM users WHERE id = ${req.params.id}`
   );
 
@@ -50,9 +57,7 @@ app.get("/user/:id", async (req, res) => {
 app.post("/admin/promote", async (req, res) => {
   const { userId } = req.body;
 
-  const connection = await mysql.createConnection(dbConfig);
-
-  await connection.query(
+  await pool.query(
     `UPDATE users SET role = 'admin' WHERE id = ${userId}`
   );
 
