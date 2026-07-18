@@ -34,11 +34,11 @@ Como o projeto é construído apenas com arquivos estáticos, não é necessári
 
 1. Clone este repositório:
    ```bash
-   git clone https://github.com/seu-usuario/resume-dashboard.git
+   git clone https://github.com/kellerman-mota/career-dashboard.git
    ```
 2. Navegue até o diretório do projeto:
    ```bash
-   cd resume-dashboard
+   cd career-dashboard
    ```
 3. Para visualizar, você pode usar uma extensão como o *Live Server* do VSCode ou simplesmente iniciar um servidor HTTP simples via Python:
    ```bash
