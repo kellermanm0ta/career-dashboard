@@ -60,10 +60,11 @@ const experienceDetails = {
             "Modelagem de banco de dados e regras de negócio.",
             "Definição e evolução da arquitetura da solução.",
             "Liderança técnica de equipe de desenvolvimento.",
+            "Implantação e administração de servidores VPS (ambientes Linux) em provedores de nuvem para hospedagem e sustentação das soluções ERP dos clientes.",
             "Implantação, treinamento e suporte a clientes."
         ],
         projects: [],
-        techs: ["Java", "Hibernate", "PrimeFaces", "Tomcat", "MySQL", ".NET"]
+        techs: ["Java", "Hibernate", "PrimeFaces", "Tomcat", "MySQL", ".NET", "Linux", "VPS", "Cloud Hosting"]
     },
     "Unimed Goiânia": {
         role: "Full Stack Software Engineer",
@@ -179,7 +180,7 @@ const certificationsData = [
 
 const techData = [
     { name: "Java", years: 13, level: "Expert", iconClass: "devicon-java-plain" },
-    { name: "Spring Boot", years: 8, level: "Advanced", iconClass: "devicon-spring-original colored" },
+    { name: "Spring Boot", years: 5, level: "Advanced", iconClass: "devicon-spring-original colored" },
     { name: "Angular", years: 8, level: "Advanced", iconClass: "devicon-angular-plain colored" },
     { name: "Node.js", years: 8, level: "Advanced", iconClass: "devicon-nodejs-plain-wordmark colored" },
     { name: "WebSphere", years: 4, level: "Intermediate", iconClass: "fa-solid fa-server" }, // Generic Server icon for App Server
@@ -191,7 +192,8 @@ const techData = [
     { name: "SQL", years: 13, level: "Expert", iconClass: "devicon-azuresqldatabase-plain" },
     { name: "TypeScript/JavaScript", years: 8, level: "Advanced", iconClass: "devicon-typescript-plain colored" },
     { name: "C# / .NET", years: 2, level: "Basic", iconClass: "devicon-csharp-plain colored" },
-    { name: "Linux", years: 4, level: "Intermediate", iconClass: "devicon-linux-plain" },
+    { name: "Linux", years: 10, level: "Advanced", iconClass: "devicon-linux-plain" },
+    { name: "Cloud & VPS", years: 5, level: "Advanced", iconClass: "fa-solid fa-cloud" },
     { name: "MongoDB", years: 2, level: "Basic", iconClass: "devicon-mongodb-plain colored" },
 ];
 
