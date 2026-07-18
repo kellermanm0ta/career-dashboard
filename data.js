@@ -190,8 +190,9 @@ const techData = [
     { name: "JQuery", years: 3, level: "Intermediate", iconClass: "devicon-jquery-plain-wordmark" },
     { name: "SQL", years: 13, level: "Expert", iconClass: "devicon-azuresqldatabase-plain" },
     { name: "TypeScript/JavaScript", years: 8, level: "Advanced", iconClass: "devicon-typescript-plain colored" },
-    { name: "C# / .NET", years: 2, level: "Intermediate", iconClass: "devicon-csharp-plain colored" },
+    { name: "C# / .NET", years: 2, level: "Basic", iconClass: "devicon-csharp-plain colored" },
     { name: "Linux", years: 5, level: "Intermediate", iconClass: "devicon-linux-plain" },
+    { name: "MongoDB", years: 2, level: "Basic", iconClass: "devicon-mongodb-plain colored" },
 ];
 
 const projectsData = [
