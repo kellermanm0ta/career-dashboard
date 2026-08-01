@@ -28,7 +28,7 @@ function drawTimeline() {
 
     // Escalas
     const x = d3.scaleLinear()
-        .domain([2004, 2027])
+        .domain([2004, 2030])
         .range([0, width]);
 
     const y = d3.scaleBand()

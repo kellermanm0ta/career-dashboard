@@ -94,13 +94,15 @@ const experienceDetails = {
     }
 };
 
+const present= new Date().getFullYear();
+
 const timelineData = [
     {
         category: "Experiência",
         name: "Sicoob Confederação",
         startYear: 2021.8, // Oct 2021
-        endYear: 2026.6, // Present (Jul 2026)
-        label: "Oct/2021 - Present"
+        endYear: present,
+        label: "Oct/2021 - Presente"
     },
     {
         category: "Experiência",
@@ -133,9 +135,9 @@ const timelineData = [
     {
         category: "Acadêmico",
         name: "Pós: Agentes Inteligentes (UFG)",
-        startYear: 2024.0, // Estimate
-        endYear: 2026.6,
-        label: "2024 - 2026"
+        startYear: 2026.0, // Estimate
+        endYear: present,
+        label: "2026 - Presente"
     },
     {
         category: "Acadêmico",
@@ -185,7 +187,7 @@ const techData = [
     { name: "Node.js", years: 8, level: "Advanced", iconClass: "devicon-nodejs-plain-wordmark colored" },
     { name: "WebSphere", years: 4, level: "Intermediate", iconClass: "fa-solid fa-server" }, // Generic Server icon for App Server
     { name: "Docker", years: 4, level: "Intermediate", iconClass: "devicon-docker-plain colored" },
-    { name: "Kafka", years: 1, level: "Basic", iconClass: "devicon-apachekafka-original" },
+    { name: "Apache Kafka", years: 1, level: "Basic", iconClass: "devicon-apachekafka-original" },
     { name: "Hibernate", years: 8, level: "Advanced", iconClass: "devicon-hibernate-plain colored" },
     { name: "JSF", years: 5, level: "Advanced", iconClass: "devicon-java-plain colored" }, // JSF is a Java spec, so Java icon works best as fallback
     { name: "JQuery", years: 3, level: "Intermediate", iconClass: "devicon-jquery-plain-wordmark" },
@@ -194,7 +196,7 @@ const techData = [
     { name: "C# / .NET", years: 2, level: "Basic", iconClass: "devicon-csharp-plain colored" },
     { name: "Linux", years: 10, level: "Advanced", iconClass: "devicon-linux-plain" },
     { name: "Cloud & VPS", years: 5, level: "Advanced", iconClass: "fa-solid fa-cloud" },
-    { name: "MongoDB", years: 2, level: "Basic", iconClass: "devicon-mongodb-plain colored" },
+    { name: "NoSQL", years: 2, level: "Basic", iconClass: "devicon-mongodb-plain colored" },
 ];
 
 const projectsData = [
